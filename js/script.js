@@ -1,5 +1,5 @@
 
-const pages = Array.from({ length: 25 }, (_, i) => `img/page${i + 1}.png`);
+const pages = Array.from({ length: 26 }, (_, i) => `img/page${i + 1}.png`);
 let currentPage = 0;
 
 const mainScreen = document.getElementById("main-screen");
