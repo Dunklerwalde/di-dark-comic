@@ -1,10 +1,11 @@
 
 const pages = Array.from({ length: 25 }, (_, i) => `img/page${i + 1}.png`);
-
 let currentPage = 0;
+
 const mainScreen = document.getElementById("main-screen");
 const comicScreen = document.getElementById("comic-screen");
 const comicPage = document.getElementById("comic-page");
+
 const soundtrack = new Audio("audio/soundtrack.mp3");
 soundtrack.loop = true;
 
@@ -12,31 +13,39 @@ function startComic() {
   mainScreen.style.display = "none";
   comicScreen.style.display = "block";
   currentPage = 0;
-  updatePage();
-  soundtrack.play();
+  updatePage(true);
+  setTimeout(() => soundtrack.play().catch(() => {}), 200);
 }
 
-function updatePage() {
-  comicPage.classList.remove("fade-in");
-  void comicPage.offsetWidth;
-  comicPage.src = pages[currentPage];
-  comicPage.alt = `Страница ${currentPage + 1}`;
-  comicPage.classList.add("fade-in");
+function updatePage(fade = false) {
+  if (fade) {
+    comicPage.style.opacity = 0;
+    setTimeout(() => {
+      comicPage.src = pages[currentPage];
+      comicPage.alt = `Страница ${currentPage + 1}`;
+      comicPage.onload = () => {
+        comicPage.style.opacity = 1;
+      };
+    }, 150);
+  } else {
+    comicPage.src = pages[currentPage];
+    comicPage.alt = `Страница ${currentPage + 1}`;
+  }
 }
 
 function nextPage() {
   if (currentPage < pages.length - 1) {
     currentPage++;
-    updatePage();
+    updatePage(true);
   }
 }
 
 function prevPage() {
   if (currentPage > 0) {
     currentPage--;
-    updatePage();
+    updatePage(true);
   } else {
-    goHome(); // если на первой странице — вернуться на главную
+    goHome();
   }
 }
 
