@@ -1,9 +1,5 @@
 
-const pages = [
-  "img/page1.png",
-  "img/page2.png",
-  "img/page3.png"
-];
+const pages = Array.from({ length: 25 }, (_, i) => `img/page${i + 1}.png`);
 
 let currentPage = 0;
 const mainScreen = document.getElementById("main-screen");
@@ -39,6 +35,8 @@ function prevPage() {
   if (currentPage > 0) {
     currentPage--;
     updatePage();
+  } else {
+    goHome(); // если на первой странице — вернуться на главную
   }
 }
 
