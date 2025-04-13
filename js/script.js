@@ -8,7 +8,7 @@ const comicPage = document.getElementById("comic-page");
 
 const soundtrack = new Audio("audio/soundtrack.mp3");
 soundtrack.loop = true;
-soundtrack.volume = 0.2; 
+soundtrack.volume = 0.07; 
 
 function startComic() {
   mainScreen.style.display = "none";
