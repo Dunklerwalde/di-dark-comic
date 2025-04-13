@@ -45,11 +45,10 @@ body {
 }
 .controls {
   margin-top: 20px;
-  display: flex;
-  justify-content: center;  /* все кнопки в одну линию по центру */
-  align-items: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 равных колонки */
   gap: 10px;
+  justify-items: center;
 }
 
 button:focus {
